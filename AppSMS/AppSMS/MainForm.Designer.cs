@@ -63,15 +63,17 @@
             this.btn_rescan.TabIndex = 2;
             this.btn_rescan.Text = "RESCAN";
             this.btn_rescan.UseVisualStyleBackColor = true;
+            this.btn_rescan.Click += new System.EventHandler(this.rescan_ComPort);
             // 
             // btn_connect
             // 
             this.btn_connect.Location = new System.Drawing.Point(343, 22);
             this.btn_connect.Name = "btn_connect";
-            this.btn_connect.Size = new System.Drawing.Size(75, 23);
+            this.btn_connect.Size = new System.Drawing.Size(87, 23);
             this.btn_connect.TabIndex = 3;
             this.btn_connect.Text = "CONNECT";
             this.btn_connect.UseVisualStyleBackColor = true;
+            this.btn_connect.Click += new System.EventHandler(this.connect_ComPort);
             // 
             // btn_setting
             // 
@@ -81,6 +83,11 @@
             this.btn_setting.TabIndex = 4;
             this.btn_setting.Text = "SETTING";
             this.btn_setting.UseVisualStyleBackColor = true;
+            this.btn_setting.Click += new System.EventHandler(this.setting_ComPort);
+            // 
+            // sim900serialPort
+            // 
+            this.sim900serialPort.DataReceived += new System.IO.Ports.SerialDataReceivedEventHandler(this.receivedData_ComPort);
             // 
             // textBox1
             // 
@@ -88,14 +95,14 @@
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
             this.textBox1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBox1.Size = new System.Drawing.Size(405, 142);
+            this.textBox1.Size = new System.Drawing.Size(417, 142);
             this.textBox1.TabIndex = 5;
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(430, 261);
+            this.ClientSize = new System.Drawing.Size(444, 261);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.btn_setting);
             this.Controls.Add(this.btn_connect);
@@ -104,6 +111,7 @@
             this.Controls.Add(this.label1);
             this.Name = "MainForm";
             this.Text = "SIM900";
+            this.Load += new System.EventHandler(this.MainForm_PreLoad);
             this.ResumeLayout(false);
             this.PerformLayout();
 

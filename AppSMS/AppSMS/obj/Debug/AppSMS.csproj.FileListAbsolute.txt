@@ -8,3 +8,4 @@ E:\MyProject\Sim900\App-SMS\AppSMS\AppSMS\obj\Debug\AppSMS.csproj.GenerateResour
 E:\MyProject\Sim900\App-SMS\AppSMS\AppSMS\obj\Debug\AppSMS.exe
 E:\MyProject\Sim900\App-SMS\AppSMS\AppSMS\obj\Debug\AppSMS.pdb
 E:\MyProject\Sim900\App-SMS\AppSMS\AppSMS\obj\Debug\AppSMS.MainForm.resources
+E:\MyProject\Sim900\App-SMS\AppSMS\AppSMS\obj\Debug\AppSMS.SettingForm.resources
