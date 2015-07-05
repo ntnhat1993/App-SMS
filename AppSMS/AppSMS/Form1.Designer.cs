@@ -30,7 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             this.label1 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.cbo_ComPorts = new System.Windows.Forms.ComboBox();
             this.btn_rescan = new System.Windows.Forms.Button();
             this.btn_connect = new System.Windows.Forms.Button();
             this.btn_setting = new System.Windows.Forms.Button();
@@ -47,13 +47,13 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "COMPORT";
             // 
-            // comboBox1
+            // cbo_ComPorts
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(129, 24);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(182, 21);
-            this.comboBox1.TabIndex = 1;
+            this.cbo_ComPorts.FormattingEnabled = true;
+            this.cbo_ComPorts.Location = new System.Drawing.Point(129, 24);
+            this.cbo_ComPorts.Name = "cbo_ComPorts";
+            this.cbo_ComPorts.Size = new System.Drawing.Size(182, 21);
+            this.cbo_ComPorts.TabIndex = 1;
             // 
             // btn_rescan
             // 
@@ -100,7 +100,7 @@
             this.Controls.Add(this.btn_setting);
             this.Controls.Add(this.btn_connect);
             this.Controls.Add(this.btn_rescan);
-            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.cbo_ComPorts);
             this.Controls.Add(this.label1);
             this.Name = "MainForm";
             this.Text = "SIM900";
@@ -112,7 +112,7 @@
         #endregion
 
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox cbo_ComPorts;
         private System.Windows.Forms.Button btn_rescan;
         private System.Windows.Forms.Button btn_connect;
         private System.Windows.Forms.Button btn_setting;
