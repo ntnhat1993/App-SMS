@@ -8,3 +8,12 @@ E:\MyProject\Sim900\App-SMS\AppSMS\AppSMS\obj\Debug\AppSMS.csproj.GenerateResour
 E:\MyProject\Sim900\App-SMS\AppSMS\AppSMS\obj\Debug\AppSMS.exe
 E:\MyProject\Sim900\App-SMS\AppSMS\AppSMS\obj\Debug\AppSMS.pdb
 E:\MyProject\Sim900\App-SMS\AppSMS\AppSMS\obj\Debug\AppSMS.MainForm.resources
+E:\ProjectC#\App-SMS\AppSMS\AppSMS\bin\Debug\AppSMS.exe.config
+E:\ProjectC#\App-SMS\AppSMS\AppSMS\obj\Debug\AppSMS.exe
+E:\ProjectC#\App-SMS\AppSMS\AppSMS\obj\Debug\AppSMS.pdb
+E:\ProjectC#\App-SMS\AppSMS\AppSMS\bin\Debug\AppSMS.exe
+E:\ProjectC#\App-SMS\AppSMS\AppSMS\bin\Debug\AppSMS.pdb
+E:\ProjectC#\App-SMS\AppSMS\AppSMS\obj\Debug\AppSMS.csprojResolveAssemblyReference.cache
+E:\ProjectC#\App-SMS\AppSMS\AppSMS\obj\Debug\AppSMS.MainForm.resources
+E:\ProjectC#\App-SMS\AppSMS\AppSMS\obj\Debug\AppSMS.Properties.Resources.resources
+E:\ProjectC#\App-SMS\AppSMS\AppSMS\obj\Debug\AppSMS.csproj.GenerateResource.Cache
