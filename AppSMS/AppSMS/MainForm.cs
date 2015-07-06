@@ -101,7 +101,7 @@ namespace AppSMS
         private void receivedData_ComPort(object sender, System.IO.Ports.SerialDataReceivedEventArgs e)
         {
             DateTime daytime = DateTime.Now;
-            String dtn = dt.ToShortTimeString();
+            String dtn = daytime.ToShortTimeString();
 
             messageBox.AppendText("[" + dtn + "] " + "Received: " + sim900serialPort.ReadExisting() + "\n");
         }
