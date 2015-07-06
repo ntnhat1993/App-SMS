@@ -35,7 +35,12 @@
             this.btn_connect = new System.Windows.Forms.Button();
             this.btn_setting = new System.Windows.Forms.Button();
             this.sim900serialPort = new System.IO.Ports.SerialPort(this.components);
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.messageBox = new System.Windows.Forms.TextBox();
+            this.messageGridView = new System.Windows.Forms.DataGridView();
+            this.btn_ReadMessage = new System.Windows.Forms.Button();
+            this.btn_DeleteMesage = new System.Windows.Forms.Button();
+            this.btn_DeleteAllMessage = new System.Windows.Forms.Button();
+            ((System.ComponentModel.ISupportInitialize)(this.messageGridView)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -89,21 +94,60 @@
             // 
             this.sim900serialPort.DataReceived += new System.IO.Ports.SerialDataReceivedEventHandler(this.receivedData_ComPort);
             // 
-            // textBox1
+            // messageBox
             // 
-            this.textBox1.Location = new System.Drawing.Point(13, 107);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBox1.Size = new System.Drawing.Size(417, 142);
-            this.textBox1.TabIndex = 5;
+            this.messageBox.Location = new System.Drawing.Point(13, 107);
+            this.messageBox.Multiline = true;
+            this.messageBox.Name = "messageBox";
+            this.messageBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.messageBox.Size = new System.Drawing.Size(417, 78);
+            this.messageBox.TabIndex = 5;
+            // 
+            // messageGridView
+            // 
+            this.messageGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.messageGridView.Location = new System.Drawing.Point(13, 226);
+            this.messageGridView.Name = "messageGridView";
+            this.messageGridView.Size = new System.Drawing.Size(417, 150);
+            this.messageGridView.TabIndex = 6;
+            // 
+            // btn_ReadMessage
+            // 
+            this.btn_ReadMessage.Location = new System.Drawing.Point(13, 391);
+            this.btn_ReadMessage.Name = "btn_ReadMessage";
+            this.btn_ReadMessage.Size = new System.Drawing.Size(87, 23);
+            this.btn_ReadMessage.TabIndex = 7;
+            this.btn_ReadMessage.Text = "READ FULL";
+            this.btn_ReadMessage.UseVisualStyleBackColor = true;
+            // 
+            // btn_DeleteMesage
+            // 
+            this.btn_DeleteMesage.Location = new System.Drawing.Point(180, 391);
+            this.btn_DeleteMesage.Name = "btn_DeleteMesage";
+            this.btn_DeleteMesage.Size = new System.Drawing.Size(87, 23);
+            this.btn_DeleteMesage.TabIndex = 8;
+            this.btn_DeleteMesage.Text = "DELETE";
+            this.btn_DeleteMesage.UseVisualStyleBackColor = true;
+            // 
+            // btn_DeleteAllMessage
+            // 
+            this.btn_DeleteAllMessage.Location = new System.Drawing.Point(343, 391);
+            this.btn_DeleteAllMessage.Name = "btn_DeleteAllMessage";
+            this.btn_DeleteAllMessage.Size = new System.Drawing.Size(87, 23);
+            this.btn_DeleteAllMessage.TabIndex = 9;
+            this.btn_DeleteAllMessage.Text = "DELETE ALL";
+            this.btn_DeleteAllMessage.UseVisualStyleBackColor = true;
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(444, 261);
-            this.Controls.Add(this.textBox1);
+            this.ClientSize = new System.Drawing.Size(444, 431);
+            this.Controls.Add(this.btn_DeleteAllMessage);
+            this.Controls.Add(this.btn_DeleteMesage);
+            this.Controls.Add(this.btn_ReadMessage);
+            this.Controls.Add(this.messageGridView);
+            this.Controls.Add(this.messageBox);
             this.Controls.Add(this.btn_setting);
             this.Controls.Add(this.btn_connect);
             this.Controls.Add(this.btn_rescan);
@@ -112,6 +156,7 @@
             this.Name = "MainForm";
             this.Text = "SIM900";
             this.Load += new System.EventHandler(this.MainForm_PreLoad);
+            ((System.ComponentModel.ISupportInitialize)(this.messageGridView)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -125,7 +170,11 @@
         private System.Windows.Forms.Button btn_connect;
         private System.Windows.Forms.Button btn_setting;
         private System.IO.Ports.SerialPort sim900serialPort;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox messageBox;
+        private System.Windows.Forms.DataGridView messageGridView;
+        private System.Windows.Forms.Button btn_ReadMessage;
+        private System.Windows.Forms.Button btn_DeleteMesage;
+        private System.Windows.Forms.Button btn_DeleteAllMessage;
     }
 }
 

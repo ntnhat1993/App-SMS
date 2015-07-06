@@ -100,7 +100,10 @@ namespace AppSMS
 
         private void receivedData_ComPort(object sender, System.IO.Ports.SerialDataReceivedEventArgs e)
         {
+            DateTime daytime = DateTime.Now;
+            String dtn = dt.ToShortTimeString();
 
+            messageBox.AppendText("[" + dtn + "] " + "Received: " + sport.ReadExisting() + "\n");
         }
 
         private void MainForm_PreLoad(object sender, EventArgs e)
