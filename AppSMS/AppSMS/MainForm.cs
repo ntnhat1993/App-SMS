@@ -103,7 +103,7 @@ namespace AppSMS
             DateTime daytime = DateTime.Now;
             String dtn = dt.ToShortTimeString();
 
-            messageBox.AppendText("[" + dtn + "] " + "Received: " + sport.ReadExisting() + "\n");
+            messageBox.AppendText("[" + dtn + "] " + "Received: " + sim900serialPort.ReadExisting() + "\n");
         }
 
         private void MainForm_PreLoad(object sender, EventArgs e)
