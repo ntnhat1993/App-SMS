@@ -100,15 +100,20 @@ namespace AppSMS
 
         private void receivedData_ComPort(object sender, System.IO.Ports.SerialDataReceivedEventArgs e)
         {
-            DateTime daytime = DateTime.Now;
-            String dtn = daytime.ToShortTimeString();
-
-            messageBox.AppendText("[" + dtn + "] " + "Received: " + sim900serialPort.ReadExisting() + "\n");
+            updateMessage();
         }
 
         private void MainForm_PreLoad(object sender, EventArgs e)
         {
             getComPort();
+        }
+
+        private void updateMessage()
+        {
+            DateTime daytime = DateTime.Now;
+            String dtn = daytime.ToShortTimeString();
+
+            messageBox.AppendText("[" + dtn + "] " + "Received: " + sim900serialPort.ReadExisting() + "\n");
         }
     }
 }
