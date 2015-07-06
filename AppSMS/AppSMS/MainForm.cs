@@ -115,5 +115,9 @@ namespace AppSMS
 
             messageBox.AppendText("[" + dtn + "] " + "Received: " + sim900serialPort.ReadExisting() + "\n");
         }
+
+        private void updateMessage2()
+        {
+        }
     }
 }
