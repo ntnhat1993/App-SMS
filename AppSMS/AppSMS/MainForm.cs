@@ -100,6 +100,16 @@ namespace AppSMS
 
         private void receivedData_ComPort(object sender, System.IO.Ports.SerialDataReceivedEventArgs e)
         {
+            updateMessage();
+        }
+
+        private void MainForm_PreLoad(object sender, EventArgs e)
+        {
+            getComPort();
+        }
+
+        private void updateMessage()
+        {
             DateTime daytime = DateTime.Now;
             String dtn = daytime.ToShortTimeString();
             try
@@ -111,9 +121,8 @@ namespace AppSMS
             }
         }
 
-        private void MainForm_PreLoad(object sender, EventArgs e)
+        private void updateMessage2()
         {
-            getComPort();
         }
     }
 }

@@ -1,3 +1,14 @@
+<<<<<<< HEAD
+E:\MyProject\Sim900\App-SMS\AppSMS\AppSMS\bin\Debug\AppSMS.exe.config
+E:\MyProject\Sim900\App-SMS\AppSMS\AppSMS\bin\Debug\AppSMS.exe
+E:\MyProject\Sim900\App-SMS\AppSMS\AppSMS\bin\Debug\AppSMS.pdb
+E:\MyProject\Sim900\App-SMS\AppSMS\AppSMS\obj\Debug\AppSMS.MainForm.resources
+E:\MyProject\Sim900\App-SMS\AppSMS\AppSMS\obj\Debug\AppSMS.SettingForm.resources
+E:\MyProject\Sim900\App-SMS\AppSMS\AppSMS\obj\Debug\AppSMS.Properties.Resources.resources
+E:\MyProject\Sim900\App-SMS\AppSMS\AppSMS\obj\Debug\AppSMS.csproj.GenerateResource.Cache
+E:\MyProject\Sim900\App-SMS\AppSMS\AppSMS\obj\Debug\AppSMS.exe
+E:\MyProject\Sim900\App-SMS\AppSMS\AppSMS\obj\Debug\AppSMS.pdb
+=======
 E:\ProjectC#\App-SMS\AppSMS\AppSMS\bin\Debug\AppSMS.exe.config
 E:\ProjectC#\App-SMS\AppSMS\AppSMS\bin\Debug\AppSMS.exe
 E:\ProjectC#\App-SMS\AppSMS\AppSMS\bin\Debug\AppSMS.pdb
@@ -8,3 +19,4 @@ E:\ProjectC#\App-SMS\AppSMS\AppSMS\obj\Debug\AppSMS.Properties.Resources.resourc
 E:\ProjectC#\App-SMS\AppSMS\AppSMS\obj\Debug\AppSMS.csproj.GenerateResource.Cache
 E:\ProjectC#\App-SMS\AppSMS\AppSMS\obj\Debug\AppSMS.exe
 E:\ProjectC#\App-SMS\AppSMS\AppSMS\obj\Debug\AppSMS.pdb
+>>>>>>> dcb6d40fb7cd58675bac4aeb484d9dc4d84c1492
