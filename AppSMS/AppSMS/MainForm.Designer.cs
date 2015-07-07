@@ -29,23 +29,23 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.label1 = new System.Windows.Forms.Label();
+            this.COMLabel = new System.Windows.Forms.Label();
             this.cbo_ComPorts = new System.Windows.Forms.ComboBox();
             this.btn_rescan = new System.Windows.Forms.Button();
             this.btn_connect = new System.Windows.Forms.Button();
             this.btn_setting = new System.Windows.Forms.Button();
             this.sim900serialPort = new System.IO.Ports.SerialPort(this.components);
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.msgListBox = new System.Windows.Forms.ListBox();
             this.SuspendLayout();
             // 
-            // label1
+            // COMLabel
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(27, 27);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(61, 13);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "COMPORT";
+            this.COMLabel.AutoSize = true;
+            this.COMLabel.Location = new System.Drawing.Point(27, 27);
+            this.COMLabel.Name = "COMLabel";
+            this.COMLabel.Size = new System.Drawing.Size(61, 13);
+            this.COMLabel.TabIndex = 0;
+            this.COMLabel.Text = "COMPORT";
             // 
             // cbo_ComPorts
             // 
@@ -89,26 +89,26 @@
             // 
             this.sim900serialPort.DataReceived += new System.IO.Ports.SerialDataReceivedEventHandler(this.receivedData_ComPort);
             // 
-            // textBox1
+            // msgListBox
             // 
-            this.textBox1.Location = new System.Drawing.Point(13, 107);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBox1.Size = new System.Drawing.Size(417, 142);
-            this.textBox1.TabIndex = 5;
+            this.msgListBox.FormattingEnabled = true;
+            this.msgListBox.Location = new System.Drawing.Point(30, 100);
+            this.msgListBox.Name = "msgListBox";
+            this.msgListBox.ScrollAlwaysVisible = true;
+            this.msgListBox.Size = new System.Drawing.Size(400, 225);
+            this.msgListBox.TabIndex = 5;
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(444, 261);
-            this.Controls.Add(this.textBox1);
+            this.ClientSize = new System.Drawing.Size(467, 344);
+            this.Controls.Add(this.msgListBox);
             this.Controls.Add(this.btn_setting);
             this.Controls.Add(this.btn_connect);
             this.Controls.Add(this.btn_rescan);
             this.Controls.Add(this.cbo_ComPorts);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.COMLabel);
             this.Name = "MainForm";
             this.Text = "SIM900";
             this.Load += new System.EventHandler(this.MainForm_PreLoad);
@@ -119,13 +119,13 @@
 
         #endregion
 
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label COMLabel;
         private System.Windows.Forms.ComboBox cbo_ComPorts;
         private System.Windows.Forms.Button btn_rescan;
         private System.Windows.Forms.Button btn_connect;
         private System.Windows.Forms.Button btn_setting;
         private System.IO.Ports.SerialPort sim900serialPort;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.ListBox msgListBox;
     }
 }
 
