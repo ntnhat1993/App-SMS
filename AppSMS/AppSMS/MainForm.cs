@@ -108,7 +108,6 @@ namespace AppSMS
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex);
             }
         }
 
