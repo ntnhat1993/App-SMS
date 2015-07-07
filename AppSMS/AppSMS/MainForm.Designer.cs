@@ -40,6 +40,7 @@
             this.btn_ReadMessage = new System.Windows.Forms.Button();
             this.btn_DeleteMesage = new System.Windows.Forms.Button();
             this.btn_DeleteAllMessage = new System.Windows.Forms.Button();
+            this.listBox1 = new System.Windows.Forms.ListBox();
             ((System.ComponentModel.ISupportInitialize)(this.messageGridView)).BeginInit();
             this.SuspendLayout();
             // 
@@ -138,11 +139,20 @@
             this.btn_DeleteAllMessage.Text = "DELETE ALL";
             this.btn_DeleteAllMessage.UseVisualStyleBackColor = true;
             // 
+            // listBox1
+            // 
+            this.listBox1.FormattingEnabled = true;
+            this.listBox1.Location = new System.Drawing.Point(42, 248);
+            this.listBox1.Name = "listBox1";
+            this.listBox1.Size = new System.Drawing.Size(120, 95);
+            this.listBox1.TabIndex = 10;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(444, 431);
+            this.Controls.Add(this.listBox1);
             this.Controls.Add(this.btn_DeleteAllMessage);
             this.Controls.Add(this.btn_DeleteMesage);
             this.Controls.Add(this.btn_ReadMessage);
@@ -175,6 +185,7 @@
         private System.Windows.Forms.Button btn_ReadMessage;
         private System.Windows.Forms.Button btn_DeleteMesage;
         private System.Windows.Forms.Button btn_DeleteAllMessage;
+        private System.Windows.Forms.ListBox listBox1;
     }
 }
 
