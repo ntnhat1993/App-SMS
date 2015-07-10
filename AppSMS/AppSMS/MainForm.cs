@@ -112,13 +112,8 @@ namespace AppSMS
         {
             DateTime daytime = DateTime.Now;
             String dtn = daytime.ToShortTimeString();
-            try
-            {
-                messageBox.AppendText("[" + dtn + "] " + "Received: " + sim900serialPort.ReadExisting() + "\n");
-            }
-            catch (Exception ex)
-            {
-            }
+            listBox1.DisplayMember = sim900serialPort.ReadExisting();
+           // MessageBox.Show(sim900serialPort.ReadExisting(), sim900serialPort.ReadExisting(), MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
         private void updateMessage2()
