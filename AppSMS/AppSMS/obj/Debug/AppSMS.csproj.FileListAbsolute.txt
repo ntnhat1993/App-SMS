@@ -8,3 +8,5 @@ E:\ProjectC#\App-SMS\AppSMS\AppSMS\obj\Debug\AppSMS.Properties.Resources.resourc
 E:\ProjectC#\App-SMS\AppSMS\AppSMS\obj\Debug\AppSMS.csproj.GenerateResource.Cache
 E:\ProjectC#\App-SMS\AppSMS\AppSMS\obj\Debug\AppSMS.exe
 E:\ProjectC#\App-SMS\AppSMS\AppSMS\obj\Debug\AppSMS.pdb
+E:\ProjectC#\App-SMS\AppSMS\AppSMS\bin\Debug\bin\Debug\SIM900.sdf
+E:\ProjectC#\App-SMS\AppSMS\AppSMS\bin\Debug\SIM900.sdf

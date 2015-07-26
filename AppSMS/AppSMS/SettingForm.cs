@@ -52,7 +52,7 @@ namespace AppSMS
             cbo_BaudRate.SelectedItem = "9600";
             cbo_DataBit.SelectedItem = "8";
             cbo_Parity.SelectedItem = "None";
-            cbo_StopBit.SelectedItem = "None";
+            cbo_StopBit.SelectedItem = "One";
         }
 
         private void CompletedSetting(object sender, EventArgs e)
@@ -62,22 +62,22 @@ namespace AppSMS
 
         private void cbo_BaudRate_SelectedIndexChanged(object sender, EventArgs e)
         {
-            Baudrate = Convert.ToInt32(cbo_BaudRate.Text);
+            _Baudrate = Convert.ToInt32(cbo_BaudRate.Text);
         }
 
         private void cbo_DataBit_SelectedIndexChanged(object sender, EventArgs e)
         {
-            DataBits = Convert.ToInt32(cbo_DataBit.Text);
+            _DataBits = Convert.ToInt32(cbo_DataBit.Text);
         }
 
         private void cbo_Parity_SelectedIndexChanged(object sender, EventArgs e)
         {
-            Parity = cbo_Parity.Text;
+            _Parity = cbo_Parity.Text;
         }
 
         private void cbo_StopBit_SelectedIndexChanged(object sender, EventArgs e)
         {
-            Parity = cbo_StopBit.Text;
+            _Stopbits = cbo_StopBit.Text;
         }
         
     }

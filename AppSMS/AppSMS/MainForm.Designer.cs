@@ -40,7 +40,8 @@
             this.btn_ReadMessage = new System.Windows.Forms.Button();
             this.btn_DeleteMesage = new System.Windows.Forms.Button();
             this.btn_DeleteAllMessage = new System.Windows.Forms.Button();
-            this.listBox1 = new System.Windows.Forms.ListBox();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.timer2 = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.messageGridView)).BeginInit();
             this.SuspendLayout();
             // 
@@ -101,58 +102,64 @@
             this.messageBox.Multiline = true;
             this.messageBox.Name = "messageBox";
             this.messageBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.messageBox.Size = new System.Drawing.Size(417, 78);
+            this.messageBox.Size = new System.Drawing.Size(588, 78);
             this.messageBox.TabIndex = 5;
             // 
             // messageGridView
             // 
             this.messageGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.messageGridView.Location = new System.Drawing.Point(13, 226);
+            this.messageGridView.Location = new System.Drawing.Point(13, 191);
             this.messageGridView.Name = "messageGridView";
-            this.messageGridView.Size = new System.Drawing.Size(417, 150);
+            this.messageGridView.Size = new System.Drawing.Size(497, 228);
             this.messageGridView.TabIndex = 6;
+            this.messageGridView.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.messageGridView_CellClick);
             // 
             // btn_ReadMessage
             // 
-            this.btn_ReadMessage.Location = new System.Drawing.Point(13, 391);
+            this.btn_ReadMessage.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btn_ReadMessage.Location = new System.Drawing.Point(516, 191);
             this.btn_ReadMessage.Name = "btn_ReadMessage";
             this.btn_ReadMessage.Size = new System.Drawing.Size(87, 23);
             this.btn_ReadMessage.TabIndex = 7;
             this.btn_ReadMessage.Text = "READ FULL";
             this.btn_ReadMessage.UseVisualStyleBackColor = true;
+            this.btn_ReadMessage.Click += new System.EventHandler(this.btn_ReadMessage_Click);
             // 
             // btn_DeleteMesage
             // 
-            this.btn_DeleteMesage.Location = new System.Drawing.Point(180, 391);
+            this.btn_DeleteMesage.Location = new System.Drawing.Point(516, 367);
             this.btn_DeleteMesage.Name = "btn_DeleteMesage";
             this.btn_DeleteMesage.Size = new System.Drawing.Size(87, 23);
             this.btn_DeleteMesage.TabIndex = 8;
             this.btn_DeleteMesage.Text = "DELETE";
             this.btn_DeleteMesage.UseVisualStyleBackColor = true;
+            this.btn_DeleteMesage.Click += new System.EventHandler(this.btn_DeleteMesage_Click);
             // 
             // btn_DeleteAllMessage
             // 
-            this.btn_DeleteAllMessage.Location = new System.Drawing.Point(343, 391);
+            this.btn_DeleteAllMessage.Location = new System.Drawing.Point(516, 396);
             this.btn_DeleteAllMessage.Name = "btn_DeleteAllMessage";
             this.btn_DeleteAllMessage.Size = new System.Drawing.Size(87, 23);
             this.btn_DeleteAllMessage.TabIndex = 9;
             this.btn_DeleteAllMessage.Text = "DELETE ALL";
             this.btn_DeleteAllMessage.UseVisualStyleBackColor = true;
+            this.btn_DeleteAllMessage.Click += new System.EventHandler(this.btn_DeleteAllMessage_Click);
             // 
-            // listBox1
+            // timer1
             // 
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.Location = new System.Drawing.Point(67, 240);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(120, 95);
-            this.listBox1.TabIndex = 10;
+            this.timer1.Interval = 3000;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
+            // timer2
+            // 
+            this.timer2.Interval = 2000;
+            this.timer2.Tick += new System.EventHandler(this.timer2_Tick);
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(444, 431);
-            this.Controls.Add(this.listBox1);
+            this.ClientSize = new System.Drawing.Size(613, 431);
             this.Controls.Add(this.btn_DeleteAllMessage);
             this.Controls.Add(this.btn_DeleteMesage);
             this.Controls.Add(this.btn_ReadMessage);
@@ -174,18 +181,19 @@
 
         #endregion
 
+        private System.IO.Ports.SerialPort sim900serialPort;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox cbo_ComPorts;
         private System.Windows.Forms.Button btn_rescan;
         private System.Windows.Forms.Button btn_connect;
         private System.Windows.Forms.Button btn_setting;
-        private System.IO.Ports.SerialPort sim900serialPort;
         private System.Windows.Forms.TextBox messageBox;
         private System.Windows.Forms.DataGridView messageGridView;
         private System.Windows.Forms.Button btn_ReadMessage;
         private System.Windows.Forms.Button btn_DeleteMesage;
         private System.Windows.Forms.Button btn_DeleteAllMessage;
-        private System.Windows.Forms.ListBox listBox1;
+        private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.Timer timer2;
     }
 }
 
