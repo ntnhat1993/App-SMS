@@ -36,21 +36,13 @@ namespace AppSMS
             }                     
         }
 
-        private void ClearGridView()
-        {
-            while (messageGridView.Rows[0].DataGridView.RowCount > 1)
-            {
-                messageGridView.Rows.Remove(messageGridView.Rows[0]);
-            }
-        }
-
         private void UpdateMessage()
         {
             if (sim900serialPort.IsOpen)
             {
                 StopCheckNewMessage();
                 ClearBufferSerial();
-                sim900serialPort.Write(sim900.sim900ReadSMSCmd);
+                sim900.ReadSMS(sim900serialPort);
                 WaitResponse();
             }
         }
@@ -58,7 +50,7 @@ namespace AppSMS
         private void InitSystem()
         {
             dbSim900.AddDataToGrid(messageGridView);
-
+            messageGridView.ReadOnly = true;
             DataGridViewColumn state = messageGridView.Columns[0];
             DataGridViewColumn date = messageGridView.Columns[1];
             DataGridViewColumn phoneNumber = messageGridView.Columns[2];
@@ -67,6 +59,9 @@ namespace AppSMS
             date.Width = 130;
             phoneNumber.Width = 100;
             content.Width = 150;
+
+            timer2.Interval = 1000;
+            timer1.Interval = 3000;
         }
 
         /*private void addDataToGrid()
@@ -115,6 +110,8 @@ namespace AppSMS
         private void messageGridView_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             Message selectedMsg = new Message();
+            int index = messageGridView.SelectedCells[0].RowIndex;
+            String val = messageGridView.Rows[index].Cells[1].Value.ToString();
 
             selectedMsg.state = messageGridView.Rows[messageGridView.SelectedCells[0].RowIndex].Cells[0].Value.ToString();
             selectedMsg.date = messageGridView.Rows[messageGridView.SelectedCells[0].RowIndex].Cells[1].Value.ToString();
@@ -129,22 +126,47 @@ namespace AppSMS
                 dbSim900.ChangeStateMsg(selectedMsg);
                 dbSim900.AddDataToGrid(messageGridView);
             }
+
+            foreach (DataGridViewRow row in messageGridView.Rows)
+            {
+                if (row.Cells[1].Value.ToString().Equals(val))
+                {
+                    index = row.Index;
+                    break;
+                }
+            }
+            messageGridView.CurrentCell = messageGridView.Rows[index].Cells[0];
+            messageGridView.Rows[index].Selected = true;
         }
 
         private void timer1_Tick(object sender, EventArgs e)       //timer 3s
         {
             StopWaitResponse();
+            int index = messageGridView.SelectedCells[0].RowIndex;
+            String val = messageGridView.Rows[index].Cells[1].Value.ToString();
+
+            
             if (sim900serialPort.IsOpen)
             {
                 if (sim900serialPort.BytesToRead > 0)
                 {
-                    string listOfMsg = sim900serialPort.ReadExisting();
-                    sim900.ReadSMS(listOfMsg);
+                    sim900.HandleSMS(sim900serialPort);
                     dbSim900.InsertData(sim900.msg);
                     dbSim900.AddDataToGrid(messageGridView);
-                    sim900serialPort.WriteLine(sim900.sim900DelSMSCmd);
+                    sim900.DeleteSMS(sim900serialPort);
                 }
             }
+
+            foreach (DataGridViewRow row in messageGridView.Rows)
+            {
+                if (row.Cells[1].Value.ToString().Equals(val))
+                {
+                    index = row.Index;
+                    break;
+                }
+            }
+            messageGridView.CurrentCell = messageGridView.Rows[index].Cells[0];
+            messageGridView.Rows[index].Selected = true;
             CheckNewMessage();
         }
 
@@ -167,13 +189,12 @@ namespace AppSMS
             {
                 if (sim900serialPort.BytesToRead > 0)
                 {
-                    string responseFromSIM900 = sim900serialPort.ReadExisting();
-                    
-                    if (sim900.IsIncomingCall(responseFromSIM900) == true)
+                    sim900.GetResponse(sim900serialPort);
+                    if (sim900.IsIncomingCall() == true)
                     {
-                        sim900serialPort.WriteLine(sim900.sim900HangUpSMSCmd);
+                        sim900.HangUpCall(sim900serialPort);
                     }
-                    else if (sim900.IsNewMessage(responseFromSIM900) == true)
+                    else if (sim900.IsNewMessage() == true)
                     {
                         UpdateMessage();
                     }
@@ -189,6 +210,7 @@ namespace AppSMS
                 if (cbo_ComPorts.Text == "") return;
 
                 sim900serialPort.PortName = cbo_ComPorts.Text;
+                sim900serialPort.ReadTimeout = 500;
                 try
                 {
                     sim900serialPort.Open();
@@ -196,6 +218,10 @@ namespace AppSMS
                     btn_connect.Text = "DISCONNECT";
                     btn_setting.Enabled = false;
                     cbo_ComPorts.Enabled = false;
+                    if (sim900.InitSIM900(sim900serialPort) == false)
+                    {
+                        MessageBox.Show(this, "No SIM900 available", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
                     UpdateMessage();
                 }
                 catch
@@ -254,14 +280,7 @@ namespace AppSMS
 
         private void receivedData_ComPort(object sender, System.IO.Ports.SerialDataReceivedEventArgs e)
         {
-            try
-            {
-                sim900serialPort.DataReceived += new SerialDataReceivedEventHandler(receivedData_ComPort);
-            }
-            catch
-            {
-                MessageBox.Show(this, "Out Of memory", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            sim900serialPort.DataReceived += new SerialDataReceivedEventHandler(receivedData_ComPort);
         }
 
         private void MainForm_PreLoad(object sender, EventArgs e)
@@ -289,7 +308,13 @@ namespace AppSMS
 
         private void btn_DeleteAllMessage_Click(object sender, EventArgs e)
         {
-            ClearGridView();
+            DialogResult result = MessageBox.Show("Do you want to delete all messages?", 
+                                    "Warning", MessageBoxButtons.YesNo);
+            if (result == DialogResult.Yes)
+            {
+                dbSim900.DeleteAllData();
+                dbSim900.AddDataToGrid(messageGridView);
+            }
         }
 
     }

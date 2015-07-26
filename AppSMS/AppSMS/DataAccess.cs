@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Data.SqlServerCe;
 using System.Data;
 using System.Windows.Forms;
+using System.ComponentModel;
 
 namespace AppSMS
 {
@@ -51,6 +52,18 @@ namespace AppSMS
             conn.Close();
         }
 
+        public void DeleteAllData()
+        {
+            SqlCeConnection conn = new SqlCeConnection(Properties.Settings.Default.SIM900ConnectionString);
+            conn.Open();
+
+            String insertQuery = "DELETE FROM MessageTable";
+            SqlCeCommand command = new SqlCeCommand(insertQuery, conn);
+            command.ExecuteNonQuery();
+
+            conn.Close();
+        }
+
         public void AddDataToGrid(DataGridView _messageGridView)
         {
             SqlCeConnection conn = new SqlCeConnection(
@@ -65,6 +78,7 @@ namespace AppSMS
                 adapter.Fill(dataSource, "Message_table");
                 _messageGridView.DataSource = dataSource;
                 _messageGridView.DataMember = "Message_table";
+                _messageGridView.Sort(_messageGridView.Columns[1], ListSortDirection.Descending);
             }
             conn.Close();
         }

@@ -4,41 +4,92 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.IO.Ports;
+using System.Threading;
 
 namespace AppSMS
 {
     class Sim900Controller
     {
+        private String recvBuff;
+
+        private String sim900ReadSMSCmd = "at+cmgl=\"ALL\"\r\n";
+
+        private String sim900DelSMSCmd = "at+cmgda=\"DEL ALL\"\r\n";
+
+        private String sim900HangUpSMSCmd = "ath\r\n";
+
         public List<Message> msg;
 
-        public String sim900ReadSMSCmd = "at+cmgl=\"ALL\"\r\n";
-
-        public String sim900DelSMSCmd = "at+cmgda=\"DEL ALL\"\r\n";
-
-        public String sim900HangUpSMSCmd = "ath\r\n";
+        private void WriteCommand(SerialPort _sp, String cmd)
+        {
+            _sp.WriteLine(cmd);
+        }
 
         public Sim900Controller()
         {
             msg = new List<Message>();
+            recvBuff = "";
         }
 
-        public Boolean IsSimModuleAlive()
+        public Boolean InitSIM900(SerialPort _sp)
         {
-            return false;
+            _sp.WriteLine("at+cnmi=2,3,0,0,0\r\n"); //configure sms delivery rule
+            Thread.Sleep(500);
+            recvBuff = _sp.ReadExisting();
+            if (recvBuff.IndexOf("OK") < 0)
+            {
+                return false;
+            }
+            _sp.WriteLine("at+cmgf=1\r\n"); //enable text mode
+            Thread.Sleep(500);
+            _sp.ReadExisting();
+            if (recvBuff.IndexOf("OK") < 0)
+            {
+                return false;
+            }
+            return true;
         }
 
-        public Boolean DeleteSMS(int position)
+        public void GetResponse(SerialPort _sp)
         {
-
-            return false;
+            recvBuff = _sp.ReadExisting();
         }
 
-        public Boolean ReadSMS(String rBuff)
+        public Boolean IsSimModuleAlive(SerialPort _sp)
+        {
+            WriteCommand(_sp, "at\r\n");
+            Thread.Sleep(500);
+            recvBuff = _sp.ReadExisting();
+            if (recvBuff.IndexOf("OK") < 0)
+            {
+                return false;
+            }
+            return true;
+        }
+
+        public void HangUpCall(SerialPort _sp)
+        {
+            WriteCommand(_sp, sim900HangUpSMSCmd);
+        }
+
+        public void DeleteSMS(SerialPort _sp)
+        {
+            WriteCommand(_sp, sim900DelSMSCmd);
+        }
+
+        public void ReadSMS(SerialPort _sp)
+        {
+            WriteCommand(_sp, sim900ReadSMSCmd);
+        }
+
+        public void HandleSMS(SerialPort _sp)
         {
             int pLast;
-            String str;
+            String str, rBuff;
             List<String> msgBuff = new List<string>();
             int i = 0;
+            
+            rBuff = _sp.ReadExisting();
 
             //clear data from msg list first
             msg.RemoveRange(0, msg.Count);
@@ -103,37 +154,24 @@ namespace AppSMS
 
                 msg.Add(tempMsg);
             }
+        }
+
+        public Boolean IsNewMessage()
+        {
+            if (recvBuff.IndexOf("+CMTI") < 0)
+            {
+                return false;
+            }
             return true;
         }
 
-        public Boolean IsNewMessage(String buff)
+        public Boolean IsIncomingCall()
         {
-            if (buff.IndexOf("+CMTI") >= 0)
+            if (recvBuff.IndexOf("RING") < 0)
             {
-                return true;
+                return false;
             }
-            return false;
+            return true;
         }
-
-        public Boolean IsIncomingCall(String buff)
-        {
-            if (buff.IndexOf("RING") >= 0)
-            {
-                return true;
-            }
-            return false;
-        }
-
-        public void WriteCommand(String cmd)
-        {
-             
-        }
-
-        private Boolean IsStringReceived(String str)
-        {
-
-            return false;
-        }
-        
     }
 }
